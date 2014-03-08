@@ -1,11 +1,9 @@
 mocap-dense-trajectories
 ========================
 
-This project contains code that generates dense trajectories similar to [those of Wang et. al](https://lear.inrialpes.fr/people/wang/dense_trajectories), [1]
-but generated from mocap data, instead of video sequences.
-
-The code essentially generates and tracks points from a cloud around a mocap character. The results
-of these tracks are returned as dense trajectories.
+This code generates dense trajectories similar to [those of Wang et. al](https://lear.inrialpes.fr/people/wang/dense_trajectories), [1]
+but generated from mocap data, instead of video sequences. For an extended 
+description visit our [project website](http://www.cs.ubc.ca/~julm/mocap-dense-trajectories/).
 
 Citation
 --------
@@ -25,8 +23,6 @@ Bibtex:
   organization={IEEE}
 }
 ```
-
-
 
 References
 ----------
