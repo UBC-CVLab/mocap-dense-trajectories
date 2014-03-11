@@ -1,19 +1,6 @@
 function prop = define_limb_prop()
 % DEFINE_LIMB_PROP Specify properties of tapered cylinders representing limbs.
 %
-%% Please note:
-% a) This function assumes that each human limb is represented by a tapered 
-%   cylinder.
-% b) This description of joints names is tied with the mocap files released
-% in BVH format (Motion Builder friendly) here: 
-% https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/cmu-bvh-conversion
-% c) As model is too detailed. We do not use all the joints. Please see
-% commets below for a list of unused ones. We have left them there for future
-% use if wish to make our model more sophisticated.
-% d) There is no single joint to drive the torso. So we had to create a 
-% seperate entry for it in the prop map. However, there is no joint with
-% that name in the mocap data.
-%%
 % Input: None
 %
 % Output: 
@@ -24,6 +11,20 @@ function prop = define_limb_prop()
 %             topdia     : top diameter  (thiner part of the tapered cyl.).
 %             minmajratio: ratio of min/max radius for both ends of the cyl.  
 %                          Not all cylinders have circuler ends (e.g., torso).
+%
+% NOTE
+%   a) This function assumes that each human limb is represented by a 
+%       tapered cylinder.
+%   b) This description of joints names is tied with the mocap files 
+%       released in BVH format (Motion Builder friendly) here
+%       https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/cmu-bvh-conversion
+%   c) Since the model is too detailed. We do not use all the joints. See
+%       the commets below for a list of unused ones. We have left them 
+%       there for future use if wish to make our model more sophisticated.
+%   d) There is no single joint to drive the torso. So we had to create a 
+%      seperate entry for it in the prop map. However, there is no joint 
+%      with that name in the mocap data.
+%
 % --
 % Ankur
 

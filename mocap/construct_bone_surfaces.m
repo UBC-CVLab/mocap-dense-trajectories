@@ -1,27 +1,28 @@
 function bones = construct_bone_surfaces(mocapData)
-% CONSTRUCT_BONE_SURFACES Get bone parameters (structure info) from mocap,
+% CONSTRUCT_BONE_SURFACES Gets bone parameters (structure info) from mocap,
 % computes the initial offsets, generates surfaces for each bone, and
 % applies the initial offsets to the bones.
 % 
 % Input 
-%   mocapData     : Struct. Complete mocap data from file (extracted using LOADBVH). 
+%   mocapData     : Struct. Complete mocap data from file (extracted using 
+%                       LOADBVH). 
 %
 % Output
 %   bones     : Map {String, struct}
 %                   key   : bone name.
-%                   value : struct define below. 3D bones generated using 
-%                           the described structured defined below.
+%                   value : 3D bones generated using the described 
+%                           structured defined below.
 %   
-% NOTE 1: This is the structure returned in this function.
+%   The struct defined in this code has the following entries.
 %
-%   name                : Name of the bone
-%   len                 : Length of the bone.
-%   childNodeInd        : Indices of the child bones.
-%   parentInd           : Index of the parent bone.
-%   origInd             : Original index into the mocap data struct.
-%   offsetTr            : Initial transformation of bones.   
-%
-% TODO: Make this function readable.
+%   name         : Name of the bone
+%   len          : Length of the bone.
+%   childNodeInd : Indices of the child bones.
+%   parentInd    : Index of the parent bone.
+%   origInd      : Original index into the mocap data struct.
+%   offsetTr     : Initial transformation of bones.
+%   
+%   TODO comment.
 % --
 % Ankur & Julieta
 
@@ -29,41 +30,44 @@ all_bones = {mocapData(:).name, 'Torso'};
 
 keys      = cell(1,size(all_bones,2));
 values    = cell(1,size(all_bones,2));
-totalArea = 0;
 ctr       = 1;
 
 for b_i=1:size(all_bones,2)
-    % 
+    
+    % Define the structure for bones.
     bone = struct('name', [], ... % Name of the bone
-        'len', [],...             % Length of the bone.
-        'childNodeInd', [],...    % Where does it end.
-        'parentInd', [],...       
-        'origInd', [],...         % Original index into the mocap data struct.
-        'offsetTr', []);          % Initial transformation of bones.   
+        'len',            [],...  % Length of the bone.
+        'childNodeInd',   [],...  % Where does it end.
+        'parentInd',      [],...  % Where does the bone stem from.
+        'origInd',        [],...  % Original index into the mocap data struct.
+        'offsetTr',       []);    % Initial transformation of bones.   
 
     bone.name = all_bones{b_i};
     
-    % if bone name does not exist
+    % If the bone name does not exist ...
     if isempty(strtrim(bone.name))
         continue;
-    end    
+    end
+    
+    % Torso is not a mocap bone per se, so we define its properties here.
     len = 0;
     if strcmp(all_bones{b_i}, 'Torso')
         bone.origInd = -1;
-        % getting the midponts of  TODbone.nameO: convert these indices to map
+        % The torso is upper-bounded by the arms and lower-bounded by the
+        % legs.
         leftArmInd  = find(strcmp({mocapData.name},'LeftArm'), 1);
         rightArmInd = find(strcmp({mocapData.name},'RightArm'), 1);
         leftHipInd  = find(strcmp({mocapData.name},'LeftUpLeg'), 1);
         rightHipInd = find(strcmp({mocapData.name},'RightUpLeg'), 1);
         topMid      = (mocapData(leftArmInd).Dxyz(:,1)+mocapData(rightArmInd).Dxyz(:,1))/2;
         botMid      = (mocapData(leftHipInd).Dxyz(:,1)+mocapData(rightHipInd).Dxyz(:,1))/2;
-        len         = norm(topMid-botMid);
-        offsetTr    = eye(3);
+        len         = norm(topMid-botMid); % Length defined by endpoints.
+        offsetTr    = eye(3); % And no initial transformation.
     else
         st_i = find(strcmp({mocapData.name},all_bones{b_i}),1);        
         child_node = find([mocapData.parent]==st_i);      
         if ~isempty(child_node)
-            % choose the farthest child node for calculating length
+            % Choose the farthest child node for calculating length
             for i=1:size(child_node,2)    
                 newchildNodeLoc = mocapData(child_node(i)).Dxyz(:,1);
                 newlen = norm(mocapData(st_i).Dxyz(:,1)-newchildNodeLoc);                
