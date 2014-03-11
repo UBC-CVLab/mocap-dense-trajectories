@@ -9,7 +9,7 @@ Usage
 -----
 The input is a .bvh file. You can find the entire CMU mocap dataset converted to bvh format [on the internet](https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/cmu-bvh-conversion).
 
-To generate trajectories from a sample file, run `demo_trajectory_generation`. To see nice visualizations of the process and some of the details of how this is done, run `demo_trajectory_generation_2`.
+To generate trajectories from a sample file, run `demo_trajectory_generation`. To see nice visualizations of the process and some of the nuts and bolts of how this is done, run `demo_trajectory_generation_2`.
 
 The main function that you want to call is `imocap2trajectories`. The output is an n-by-(7 + trajectory_length*2) where each row has the following entries:
 
