@@ -42,7 +42,7 @@ end
 theta       = pi/2;
 phi         = pi/3;
 D           = 100;
-UP          = [0 1 0];                  % y-axis.
+UP          = [0 1 0];                    % y-axis.
 look_at     = imocap.trans{1}{1}(1:3, 4); % center of the body to center the camera.
 HPRparam    = 3;
 

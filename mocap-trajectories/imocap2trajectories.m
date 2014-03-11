@@ -21,10 +21,19 @@ function [traj_feats, relative_thetas, relative_phis,rectangles ] = ...
 %                       to remove small trajectories.
 %
 %  Output
-%   traj_feats      :
-%   relative_thetas :
-%   relative_phis   :
-%   rectangles      :
+%   traj_feats      : n-by-37 matrix. n is the number of trajectories 
+%                       generated. The output is equivalent to the dense
+%                       trajectories of Wang et al.
+%   relative_thetas : m-long vector. m is the number of frames. The angle 
+%                       of the vertical with the camera, per frame.
+%   relative_phis   : m-long vector. m is the number of frames. The angle 
+%                       of the person's hip heading direction with the 
+%                       camera, per frame.
+%   rectangles      : m-by-4 matrix. m is the number of frames. Each row is
+%                       a rectangle around the person define as 
+%                       [xmin, ymax, xmax, ymin]. Useful if you want to
+%                       encode the trajectories enforcing geometrical 
+%                       consistency (i.e. a spatial pyramid).
 %
 % --     
 % Julieta

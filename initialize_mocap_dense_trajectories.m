@@ -16,5 +16,6 @@ include(fullfile(thisDir, 'mocap-trajectories'));
 include(fullfile(thisDir, 'visualization'));
 
 %% Third-party
+include(fullfile(thisDir, 'third-party/'));
 include(fullfile(thisDir, 'third-party/bvh-reader'));
 include(fullfile(thisDir, 'third-party/hidden-point-removal'));
