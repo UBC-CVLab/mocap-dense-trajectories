@@ -5,6 +5,25 @@ This code generates dense trajectories similar to [those of Wang et. al](https:/
 but generated from mocap data, instead of video sequences. For an extended 
 description visit our [project website](http://www.cs.ubc.ca/~julm/mocap-dense-trajectories/).
 
+Usage
+-----
+The input is a .bvh file. You can find the entire CMU mocap dataset converted to bvh format [on the internet](https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/cmu-bvh-conversion).
+
+To generate trajectories from a sample file, run `demo_trajectory_generation`. To see nice visualizations of the process and some of the details of how this is done, run `demo_trajectory_generation_2`.
+
+The main function that you want to call is `imocap2trajectories`. The output is an n-by-(7 + trajectory_length*2) where each row has the following entries:
+
+```
+frameNum:     The trajectory ends on which frame
+mean_x:       The mean value of the x coordinates of the trajectory
+mean_y:       The mean value of the y coordinates of the trajectory
+var_x:        The variance of the x coordinates of the trajectory
+var_y:        The variance of the y coordinates of the trajectory
+length:       The length of the trajectory
+scale:        This information is lost due to ortographic projection. Set to -1.
+Trajectory:   2x[trajectory length] (default 30 dimension). x and y entries of the trajectory.
+```
+
 Citation
 --------
 If you use this code, please cite our CVPR 14 paper:
