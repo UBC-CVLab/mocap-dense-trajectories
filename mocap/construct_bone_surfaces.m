@@ -124,7 +124,7 @@ vec1 = [0 0 length]';
 vec2 = transform_pts(childNode, pinv(currNodeTrans));
 theta = acos(dot(vec1,vec2)/(norm(vec1)*norm(vec2)));
 u = cross(vec1, vec2);
-T = rot_matrix_from_axis_angle(u, theta);
+T = vrrotvec2mat([u' theta]);
 
 
 function T = getOffsetTransformWithOrthogonalityConstraint(parentNodeLoc, ...
