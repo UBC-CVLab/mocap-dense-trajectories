@@ -49,7 +49,7 @@ for i=1:num_frames
     bag_of_norms  = cell2mat( model_surfaces(i).norms3D' );
     
     % Compute the projection of the points.
-    [Xp, ~] = renderOrthographic(bag_of_points, C);
+    [Xp, ~] = render_orthographic(bag_of_points, C);
     projs2d(i).pts2d = Xp;
     
     % Find the visible points...

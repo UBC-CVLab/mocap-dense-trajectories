@@ -47,7 +47,7 @@ look_at     = imocap.trans{1}{1}(1:3, 4); % center of the body to center the cam
 HPRparam    = 3;
 
 % Compute the camera matrix and position for the whole sequence.
-[C, campos] = camMatrixThetaPhi(theta, phi, D, look_at', UP);
+[C, campos] = cam_matrix_theta_phi(theta, phi, D, look_at', UP);
 
 tic;
 projs2d = project_surface_points(model_surfaces, look_at', C, campos, HPRparam);

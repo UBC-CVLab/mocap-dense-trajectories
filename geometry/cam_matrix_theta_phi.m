@@ -1,4 +1,4 @@
-function [cameraMatrix, cameraPosition] = camMatrixThetaPhi(theta, phi, d, lookat, up)
+function [cameraMatrix, cameraPosition] = cam_matrix_theta_phi(theta, phi, d, lookat, up)
 % Generates 3x4 camera mat given camera location in (d, theta, phi) coords.
 %
 % Works under orthographic projection. There is no focal length.

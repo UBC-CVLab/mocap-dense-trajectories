@@ -58,9 +58,9 @@ for name = bone_properties.keys,
         surfaceNormals = [nx(:)'; ny(:)'; nz(:)'];
         
         % Store these in the structure.
-        bone.pts           = transformPts(pts, offset_transformation);
+        bone.pts           = transform_pts(pts, offset_transformation);
         % For normals we just use rotation as transformation.
-        bone.surfnormals   = transformPts(surfaceNormals, offset_transformation(1:3, 1:3));
+        bone.surfnormals   = transform_pts(surfaceNormals, offset_transformation(1:3, 1:3));
         % Store the triangulation.
         bone.triangulation = tri;
         

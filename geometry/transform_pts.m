@@ -1,4 +1,4 @@
-function trpts = transformPts(pts, transform)
+function trpts = transform_pts(pts, transform)
 %TRANSFORMPTS Apply transformation to homogeneous point representation
 % Input
 %   pts       : 3-by-n matrix. Each row is the x,y,z points to be
