@@ -37,7 +37,7 @@ function [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view( 
 % Ankur & Julieta
 
 %% Compute the camera matrix and position for the entire sequence.
-[C, campos] = camMatrixThetaPhi(camTheta, camPhi, d, look_at', up);
+[C, campos] = cam_matrix_theta_phi(camTheta, camPhi, d, look_at', up);
 
 %% Compute the azimuthal (phis) and polar (thetas) angles for each frame.
 % Theta is constant for the entire sequence.

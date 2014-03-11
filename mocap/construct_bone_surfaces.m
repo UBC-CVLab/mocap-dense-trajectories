@@ -125,16 +125,16 @@ bones = containers.Map(keys, values);
 
 function T = getOffsetTransform(childNode, length, currNodeTrans)
 vec1 = [0 0 length]';
-vec2 = transformPts(childNode, pinv(currNodeTrans));
+vec2 = transform_pts(childNode, pinv(currNodeTrans));
 theta = acos(dot(vec1,vec2)/(norm(vec1)*norm(vec2)));
 u = cross(vec1, vec2);
-T = rotMatrixFromAxisAngle(u, theta);
+T = vrrotvec2mat([u' theta]);
 
 
 function T = getOffsetTransformWithOrthogonalityConstraint(parentNodeLoc, ...
     childNodeLoc, currNodeTrans)
-vec_ortho = transformPts(parentNodeLoc, pinv(currNodeTrans));
-vec_axis = transformPts(childNodeLoc, pinv(currNodeTrans));
+vec_ortho = transform_pts(parentNodeLoc, pinv(currNodeTrans));
+vec_axis = transform_pts(childNodeLoc, pinv(currNodeTrans));
 ux = cross(vec_axis, vec_ortho);
 ux = ux/norm(ux);
 uz = vec_axis/norm(vec_axis);
