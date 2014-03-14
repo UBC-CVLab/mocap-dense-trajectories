@@ -29,7 +29,7 @@ Citation
 If you use this code, please cite our CVPR 14 paper:
 
 ```
-Gupta, Ankur et al. "Pose from Motion for Cross-view Action Recognition via Non-linear Circulant Temporal Encoding." Computer Vision and Pattern Recognition (CVPR), 2014 IEEE Conference on. IEEE, 2014.
+A. Gupta, J. Martinez, J. J. Little and R. J. Woodham. "Pose from Motion for Cross-view Action Recognition via Non-linear Circulant Temporal Encoding". In CVPR, 2014.
 ```
 
 Bibtex:
@@ -37,9 +37,8 @@ Bibtex:
 @inproceedings{gupta20143dpose,
   title={{3D Pose from Motion for Cross-view Action Recognition via Non-linear Circulant Temporal Encoding}},
   author={Gupta, Ankur and Martinez, Julieta and Little, James J. and Woodham, Robert J.},
-  booktitle={Computer Vision and Pattern Recognition (CVPR), 2014 IEEE Conference on.},
+  booktitle={CVPR},
   year={2014}
-  organization={IEEE}
 }
 ```
 
