@@ -15,15 +15,15 @@ tic;
 fprintf('%.4f seconds loading the file.\n', toc);
 
 %% Define parameters of the trajectory generation.
-theta         = pi/2;
-phi           = pi/3;
-point_density = 20;
-d             = 100;
-look_at       = imocap.trans{1}{1}(1:3, 4); % center of the body. Used to center the camera
-up            = [0 1 0];                    % y-axis
-HPRparam      = 3;
-lenTraj       = 15;
-person_size   = 500;
+theta         = pi/2;  % Angle of the camera with the vertical.
+phi           = pi/3;  % Angle of the camera with the person's hip heading.
+point_density = 20;    % How many points to track per unit area.
+d             = 100;   % Distance from the person to the camera.
+look_at       = imocap.trans{1}{1}(1:3, 4); % Center of the body.
+up            = [0 1 0]; % Up vector for the camera. The y axis for convention.
+HPRparam      = 3;     % Parameter passed to the code of Katz et al for Hidden Point Removal.
+lenTraj       = 15;    % Trajectories will be this number of frames long.
+person_size   = 500;   % Used to remove very short trajectories.
 
 
 %% Get the features!
