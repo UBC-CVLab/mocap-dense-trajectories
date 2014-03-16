@@ -4,7 +4,7 @@ function model_surfaces = put_surfaces_in_place(imocap, frame_range)
 % now be rendered.
 % 
 % Input
-%   imocap         : TODO comment!!!
+%   imocap         : See the output of LOAD_IMOCAP_SEQ.
 %   frame_range    : 1x2 Integer. [begin_frame end_frame]. Optional. 
 %                    Defaults to the entire sequence.
 %                    Note: these frame indices correspond to 

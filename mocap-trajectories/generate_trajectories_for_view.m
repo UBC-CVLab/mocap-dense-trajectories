@@ -91,7 +91,7 @@ for frm_i = lenTraj+2:max_frame_index
     % code of dense trajectories by Wang et al.
     minStd = sqrt(3)*person_height/personSize;
     
-    % get the std for each trajectory 
+    % Get the std for each trajectory.
     stdXY = [std(traj(:, 1:2:end),0,2) std(traj(:, 2:2:end),0,2)];
     valid_size_inds = stdXY(:, 1) > minStd & stdXY(:, 2) > minStd;
     

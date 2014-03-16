@@ -1,4 +1,4 @@
-function [TRI, X, Y, Z ] = triangulatedCylinder( R, N )
+function [TRI, X, Y, Z ] = triangulated_cylinder( R, N )
 % Creates a cylinder and its surface triangulation. E.g.
 % [tri, x, y, z] = triangulated_cylinder(1:20, 10);
 % trisurf(tri, x, y, z);

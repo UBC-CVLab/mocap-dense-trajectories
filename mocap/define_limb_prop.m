@@ -62,13 +62,13 @@ keys = { 'Hips', ...      % not used
     'Torso'}; %% torso, added separately 
 
 % Up leg
-upleg.basedia = 1/5.5;
-upleg.topdia = 1/6.5;
+upleg.basedia = 1/5.0;
+upleg.topdia = 1/6.0;
 upleg.minmajratio = 1;
 
 % Bot leg
-botleg.basedia = 1/6.5;
-botleg.topdia = 1/7.5;
+botleg.basedia = 1/7.5;
+botleg.topdia = 1/8.5;
 botleg.minmajratio = 1;
 
 % foot

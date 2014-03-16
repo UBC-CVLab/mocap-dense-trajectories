@@ -1,9 +1,11 @@
 function phis = compute_phis( imocap, campos )
-%COMPUTE_PHIS Gets the relative phis between the person's hip facing
+%COMPUTE_PHIS Gets the relative angles between the person's hip facing
 %direction and the camera position.
+%
 % Input
 %   imocap : See the output of LOAD_IMOCAP_SEQ.
-%   campos : Camera position in the 3D world. 
+%   campos : 1-by-3 matrix. Camera position in the 3D world. 
+%
 % Output
 %   phis : n-long vector. Each entry is the angle between the hip's heading
 %          direction and the camera position.

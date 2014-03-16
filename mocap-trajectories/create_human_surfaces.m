@@ -16,7 +16,7 @@ function [ imocap ] = create_human_surfaces( imocap, bone_properties, point_dens
 %            triangulation : Surface triangulation.
 %
 % --
-% Julieta
+% Julieta & Ankur
 
 for name = bone_properties.keys,
     

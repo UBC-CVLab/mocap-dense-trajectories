@@ -39,7 +39,7 @@ function [traj_feats, relative_thetas, relative_phis,rectangles ] = ...
 % Julieta
 
 %% Create the bone surfaces.
-bone_properties  = define_limb_prop(); % parameters describing limb volumes
+bone_properties  = define_limb_prop(); % Parameters describing limb volumes.
 imocap = create_human_surfaces( imocap, bone_properties, point_density );
 
 %% Move the cylinders to their corresponding positions in the 3d world.
