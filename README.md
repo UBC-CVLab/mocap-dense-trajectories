@@ -5,6 +5,10 @@ This code generates dense trajectories similar to [those of Wang et. al](https:/
 but generated from mocap data, instead of video sequences. For an extended 
 description visit our [project website](http://www.cs.ubc.ca/~julm/mocap-dense-trajectories/).
 
+### Authors.
+
+The code was written mainly by [Ankur Gupta](http://www.cs.ubc.ca/~ankgupta/) and [Julieta Martinez](http://www.cs.ubc.ca/~julm/).
+
 Usage
 -----
 The input is a .bvh file. You can find the entire CMU mocap dataset converted to bvh format [on the internet](https://sites.google.com/a/cgspeed.com/cgspeed/motion-capture/cmu-bvh-conversion).
