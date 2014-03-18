@@ -12,34 +12,36 @@ function [target_joints, name_ind_map] = get_imocap_targets()
 % --
 % Alireza. Refactored by Julieta.
 
-target_joints = {   'Hips', ...           % used                       % 1
-                    'LHipJoint',  ...     % used
+% Not all the joints are used for constructing the 3D body model. Used ones
+% are highlighted by comments.  
+target_joints = {   'Hips', ...           % Body center (root node)    
+                    'LHipJoint',  ...      
                     'LeftUpLeg', ...      % left upper leg
                     'LeftLeg', ...        % left lower leg
-                    'LeftFoot', ...       % left foot                  % 5
-                    'LeftToeBase',...     % used 
-                    'RHipJoint', ...      % used
+                    'LeftFoot', ...       % left foot                  
+                    'LeftToeBase',...       
+                    'RHipJoint', ...       
                     'RightUpLeg', ...     % right upper leg
                     'RightLeg', ...       % right lower leg 
-                    'RightFoot',...       % right foot                 % 10
-                    'RightToeBase', ...   % used
-                    'LowerBack', ...      % used    
-                    'Spine', ...          % used
-                    'Spine1', ...         % used
-                    'Neck', ...           % used                       % 15
+                    'RightFoot',...       % right foot                 
+                    'RightToeBase', ...    
+                    'LowerBack', ...           
+                    'Spine', ...           
+                    'Spine1', ...          
+                    'Neck', ...           
                     'Neck1', ...          % neck
                     'Head', ...           % head 
-                    'LeftShoulder', ...   % not used
+                    'LeftShoulder', ...    
                     'LeftArm', ...        % left upper arm   
-                    'LeftForeArm', ...    % left lower arm             % 20
-                    'LeftHand', ...       % left hand
-                    'LeftFingerBase', ... % used
-                    'LeftHandIndex1', ... % used 
-                    'LThumb', ...         % used
-                    'RightShoulder', ...  % used                       % 25
+                    'LeftForeArm', ...    % left lower arm             
+                    'LeftHand', ...      
+                    'LeftFingerBase', ...  
+                    'LeftHandIndex1', ...   
+                    'LThumb', ...          
+                    'RightShoulder', ...                            
                     'RightArm', ...       % right upper arm
-                    'RightForeArm', ...   % right lower arm
-                    'RightHand', ...      % right hand   
+                    'RightForeArm', ...   % right lower arm            
+                    'RightHand', ...      
                     'Torso'};             % Added on top. Torso does not exist in the mocap data.
 if nargout > 1
     name_ind_map = containers.Map(target_joints, 1 : size(target_joints, 2));
