@@ -13,10 +13,10 @@ The input is a .bvh file. You can find the entire CMU mocap dataset converted to
 
 To generate trajectories from a sample file, run `demo_trajectory_generation`. To see nice visualizations of the process and some of the nuts and bolts of how this is done, run `demo_trajectory_generation_2`.
 
-The main function that you want to call is `imocap2trajectories`. The output is an n-by-(7 + trajectory_length*2) where each row has the following entries:
+The main function that you want to call is `imocap2trajectories`. The output is an n-by-(7 + trajectory_length*2) matrix where each row has the following entries:
 
 ```
-frameNum:     The trajectory ends on which frame
+frameNum:     The trajectory ends on this frame
 mean_x:       The mean value of the x coordinates of the trajectory
 mean_y:       The mean value of the y coordinates of the trajectory
 var_x:        The variance of the x coordinates of the trajectory
@@ -25,6 +25,8 @@ length:       The length of the trajectory
 scale:        This information is lost due to ortographic projection. Set to -1.
 Trajectory:   2x[trajectory length] (default 30 dimension). x and y entries of the trajectory.
 ```
+
+As opposed to the video dense trajectories, we obviously do not compute visual descriptors along the trajectories.
 
 Citation
 --------
