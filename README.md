@@ -51,3 +51,12 @@ References
 
 1. Wang, Heng, et al. "Action recognition by dense trajectories." Computer Vision and Pattern Recognition (CVPR), 2011 IEEE Conference on. IEEE, 2011.
 2. Katz, Sagi, Ayellet Tal, and Ronen Basri. "Direct visibility of point sets." ACM Transactions on Graphics (TOG). Vol. 26. No. 3. ACM, 2007.
+
+
+Acknowledgements
+----------
+We include following third-party code for user's convenience. Thanks to original authors for making their code publicly available:
+- bvh-matlab by Will Robertson. Complete project accessible [here](https://github.com/wspr/bvh-matlab).
+- Hidden Point Removal by Sagi Katz. Hosted at [Matlab Central](http://www.mathworks.com/matlabcentral/fileexchange/16581-hidden-point-removal).
+ 
+
