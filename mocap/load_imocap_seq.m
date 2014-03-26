@@ -23,11 +23,12 @@ if nargin < 3,
 end
 
 % Load data from bvh file.
-[mocap, ~]  = loadbvh([base_path, subject_sequence]);
-
+[mocap, time]  = loadbvh([base_path, subject_sequence]);
+mocap_fps      = 1/(time(2)-time(1));
+  
 [targets, name_ind_map]  = get_imocap_targets();
-mocap_fps = 120;
-skip      = mocap_fps / target_fps;
+
+skip      = round(mocap_fps / target_fps);
 
 imocap    = struct();
 trmocap   = cell(1, numel(targets) - 1);
