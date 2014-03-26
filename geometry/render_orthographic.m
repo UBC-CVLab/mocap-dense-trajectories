@@ -1,4 +1,4 @@
-function [pts2d rect] = render_orthographic(pts, C)
+function [pts2d, rect] = render_orthographic(pts, C)
 % RENDER_ORTHOGRAPHIC Renders the 3d points under orthographic projection
 %
 % Input

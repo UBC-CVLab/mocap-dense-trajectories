@@ -58,6 +58,7 @@ if VISUALIZE,
     for i=1:numel(projs2d)
         plot( projs2d(i).pts2d( 1, projs2d(i).visPts ), projs2d(i).pts2d( 2, projs2d(i).visPts ), 'r+');
         axis equal;
+        set(gca,'YDir','Reverse'); % Consistent with the image coordiates.
         pause(1/FPS);
         clf;
     end

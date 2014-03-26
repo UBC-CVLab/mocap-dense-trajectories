@@ -46,6 +46,8 @@ for i=1:num_frames - len_traj,
     rectangle( 'Position', [xmin, ymin, abs(xmin - xmax), abs(ymin - ymax)] );
     
     axis equal;
+    set(gca,'YDir','Reverse'); % Trajs are upside down to be consistent 
+                               % with the image coordinate system.
     pause(1/24);
     clf;
     hold off;
