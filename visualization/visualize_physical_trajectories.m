@@ -23,27 +23,7 @@ for i=1:num_frames - len_traj,
     
     if isempty( in_frame), continue; end;
     
-    % Slice the X and Y coordinates.
-    X = in_frame(:, 1:2:end-1);
-    Y = in_frame(:, 2:2:end  );
-    
-    % Plot the trajectories.
-    hold on;
-    for k = 1:size(X,1),
-        plot(X(k, :),   Y(k, :),   'LineWidth', 1.5, 'color', 'g');
-    end
-    
-    % Also plot their endpoint, that it is easier to see the person.
-    plot(X(:, end), Y(:, end), 'r*');
-    
-    % Also plot a rectangle around the person.
-    % [ xmin, ymax, xmax, ymin ];
-    rect = rectangles(i, :);
-    xmin = rect(1);
-    ymax = rect(2);
-    xmax = rect(3);
-    ymin = rect(4);
-    rectangle( 'Position', [xmin, ymin, abs(xmin - xmax), abs(ymin - ymax)] );
+    display_2D_trajectories(in_frame, [], rectangles(i, :));    
     
     axis equal;
     set(gca,'YDir','Reverse'); % Trajs are upside down to be consistent 

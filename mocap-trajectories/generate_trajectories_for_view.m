@@ -30,7 +30,7 @@ function [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view( 
 %                for each frame.
 %   phis       : n-long-vector. The phis of the camera wrt the vertical, for
 %                each frame.
-%   rectangles : n-by-4 matrix. Each row is [xmin, ymax, xmax, ymin]; i.e.
+%   rectangles : n-by-4 matrix. Each row is [xmin, xmax, ymin, ymax]; i.e.
 %                the rectangle surrouding the person in each frame.
 %
 % ---
@@ -76,13 +76,13 @@ for frm_i = lenTraj+2:max_frame_index
     % Get the rect for this frame.
     maxes = max( projs2d( fid ).pts2d, [], 2 );
     minis = min( projs2d( fid ).pts2d, [], 2 );
-    %       [ xmin, ymax, xmax, ymin ];
-    rectangles(frm_i, :) = [ minis(1), maxes(2), maxes(1), minis(2) ];
+    %       [ xmin, xmax, ymin, ymax];
+    rectangles(frm_i, :) = [minis(1),  maxes(1), minis(2),  maxes(2)];
 
     % Stack all the entries of 2d_points and visible points in a lenTraj
     % time window.
-    bag_of_visible = cell2mat( {projs2d(fid-lenTraj: fid).visPts}');
-    points_2d      = cell2mat( {projs2d(fid-lenTraj: fid).pts2d}');
+    bag_of_visible = cell2mat( {projs2d(fid: -1: fid-lenTraj).visPts}');
+    points_2d      = cell2mat( {projs2d(fid: -1: fid-lenTraj).pts2d}');
     % Keep only the points that are visible for lenTraj frames.
     traj_inds   = all( bag_of_visible, 1 );
     traj        = points_2d( :, traj_inds)';
@@ -93,7 +93,7 @@ for frm_i = lenTraj+2:max_frame_index
     
     % Get the std for each trajectory.
     stdXY = [std(traj(:, 1:2:end),0,2) std(traj(:, 2:2:end),0,2)];
-    valid_size_inds = stdXY(:, 1) > minStd & stdXY(:, 2) > minStd;
+    valid_size_inds = stdXY(:, 1) > minStd | stdXY(:, 2) > minStd;
     
     traj = traj(valid_size_inds, :);    
     

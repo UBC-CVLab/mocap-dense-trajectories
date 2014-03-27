@@ -66,7 +66,7 @@ end
 
 %% Generate the trajectories.
 lenTraj    = 15;
-personSize = 500;
+personSize = 200;
 tic;
 [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view(model_surfaces, imocap, theta, phi, D, look_at, UP, HPRparam, lenTraj, personSize);
 fprintf('%.4f seconds to compute trajectories.\n', toc);
