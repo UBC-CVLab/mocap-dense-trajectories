@@ -55,7 +55,7 @@ References
 
 Acknowledgements
 ----------
-We include following third-party code for user's convenience. Thanks to original authors for making their code publicly available:
+We include the following third-party code for user's convenience. We Thank the original authors for making their code publicly available:
 - bvh-matlab by Will Robertson. Complete project accessible [here](https://github.com/wspr/bvh-matlab).
 - Hidden Point Removal by Sagi Katz. Hosted at [Matlab Central](http://www.mathworks.com/matlabcentral/fileexchange/16581-hidden-point-removal).
  
