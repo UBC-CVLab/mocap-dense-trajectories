@@ -39,7 +39,7 @@ if VISUALIZE,
 end
 
 %% Project the surface points to 2d, and compute their visibilities.
-theta       = pi/2;
+theta       = pi/3;
 phi         = pi/3;
 D           = 100;
 UP          = [0 1 0];                    % y-axis.

@@ -5,7 +5,7 @@ function [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view( 
 %   camera.
 % 
 % Input
-%   model_surfaces : see the output of CONSTRUCT_HUMAN_MODELS.
+%   model_surfaces : see the output of PUT_SURFACES_IN_PLACE.
 %   imocap         : see the output of LOAD_IMOCAP_SEQ.
 %   camTheta       : Float. Angle that the camera position makes with the 
 %                       vertical in the range [0 pi).

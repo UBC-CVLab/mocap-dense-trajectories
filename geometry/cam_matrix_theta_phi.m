@@ -42,8 +42,8 @@ if z_up
         lookat(3)  + d*cos(theta)];
 elseif y_up
     cameraPosition = [lookat(1) + d*sin(theta)*sin(phi), ...
-        lookat(2) + d*cos(theta), ...
-        lookat(3) + d*sin(theta)*cos(phi)];
+        lookat(2) - d*cos(theta), ...
+        lookat(3) - d*sin(theta)*cos(phi)];
 else
     error('The program does not handle this case yet.');
 end
