@@ -32,16 +32,16 @@ fprintf('%.4f seconds constructing the human model.\n', toc);
 %% Visualize the points without culling
 if VISUALIZE,
     for i=1:numel(model_surfaces)
+        clf;
         display_3D_points(model_surfaces, i);
         pause(1/FPS);
-        clf;
     end
 end
 
 %% Project the surface points to 2d, and compute their visibilities.
 theta       = pi/3;
 phi         = pi/3;
-D           = 100;
+D           = 1000;
 UP          = [0 1 0];                    % y-axis.
 look_at     = imocap.trans{1}{1}(1:3, 4); % center of the body to center the camera.
 HPRparam    = 3;
@@ -56,11 +56,11 @@ fprintf('%.4f seconds projecting the points to 2D.\n', toc);
 %% Display the projected points.
 if VISUALIZE,
     for i=1:numel(projs2d)
+		clf;
         plot( projs2d(i).pts2d( 1, projs2d(i).visPts ), projs2d(i).pts2d( 2, projs2d(i).visPts ), 'r+');
         axis equal;
         set(gca,'YDir','Reverse'); % Consistent with the image coordiates.
         pause(1/FPS);
-        clf;
     end
 end
 
@@ -73,6 +73,8 @@ fprintf('%.4f seconds to compute trajectories.\n', toc);
 
 %% Visualize the trajectories
 if VISUALIZE,
+    clf;
+    % Showing generated trajectories.
     visualize_physical_trajectories(all_traj, rectangles, lenTraj);
 end
 
@@ -81,7 +83,7 @@ tic;
 all_traj_feats = cell(1, numel(all_traj));
 traj_ends      = cell(1, numel(all_traj));
 for i=1:numel(all_traj),
-    [all_traj_feats{i}, traj_ends{i}]= physical_traj2traj_features( all_traj{i}, model_surfaces(i).fNum, lenTraj );
+    [all_traj_feats{i}, traj_ends{i}] = physical_traj2traj_features( all_traj{i}, model_surfaces(i).fNum, lenTraj );
 end
 fprintf('%.4f seconds to convert the trajectories to features.\n', toc);
 

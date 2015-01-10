@@ -1,5 +1,6 @@
-function [traj_feats, relative_thetas, relative_phis,rectangles ] = ...
-    imocap2trajectories( imocap, theta, phi, point_density, d, look_at, up, HPRparam, lenTraj, person_size )
+function [traj_feats, relative_thetas, relative_phis, rectangles, semantic_feats] = ...
+    imocap2trajectories( imocap, theta, phi, point_density, d, look_at, up, ...
+    HPRparam, lenTraj, person_size)
 %IMOCAP2TRAJECTORIES Computes dense trajectories for a given mocaps 
 %sequence.
 % Input
@@ -31,7 +32,7 @@ function [traj_feats, relative_thetas, relative_phis,rectangles ] = ...
 %                       camera, per frame.
 %   rectangles      : m-by-4 matrix. m is the number of frames. Each row is
 %                       a rectangle around the person define as 
-%                       [xmin, ymax, xmax, ymin]. Useful if you want to
+%                       [xmin, xmax, ymin, ymax]. Useful if you want to
 %                       encode the trajectories enforcing geometrical 
 %                       consistency (i.e. a spatial pyramid).
 %
@@ -46,18 +47,28 @@ imocap = create_human_surfaces( imocap, bone_properties, point_density );
 model_surfaces = put_surfaces_in_place(imocap );
 
 %% Obtain trajectories for this viewpoint.
-[traj, relative_thetas, relative_phis, rectangles] = ...
+[ptraj, relative_thetas, relative_phis, rectangles] = ...
     generate_trajectories_for_view(model_surfaces, imocap, theta, phi, d, look_at, up, HPRparam, lenTraj, person_size);
 
-traj_ends = cell(1, numel( traj ));
-
+traj_ends = cell(1, numel( ptraj ));
+traj      = cell(1, numel( ptraj ));
 %% Convert the trajectories to features.
-for k=1:numel( traj ),
-    [traj{k}, traj_ends{k}] = physical_traj2traj_features( traj{k}, model_surfaces(k).fNum, lenTraj );
+for k=1:numel( ptraj ),
+    [traj{k}, traj_ends{k}] = physical_traj2traj_features( ptraj{k}, model_surfaces(k).fNum, lenTraj );
 end
 
 %% Convert the trajectories and ends to matrices.
 traj_feats = cell2mat( traj' );
-
+if ~isempty(traj_feats),
+    frame_inds = unique( traj_feats(:, 1) );
+    % Remove all the zero rows.
+    rectangles = rectangles( frame_inds, : );
+else
+    rectangles = [];
 end
 
+%% Generate semantic information on demand.
+if nargout > 4,
+    semantic_feats = generate_semantic_features_for_trajs(ptraj, imocap, theta, phi, d, look_at, up);
+    semantic_feats = cell2mat( semantic_feats' );
+end

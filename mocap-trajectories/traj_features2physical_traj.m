@@ -7,7 +7,7 @@ function ptraj = traj_features2physical_traj(trajFeatures, numPoints)
 %           3:4   : Variance of xy trajectories in normalized feature coordinates.
 %           5     : Length of the trajectory.
 %           6     : Scale at which it was calculated.
-%           8:end : XY coordinates in normalized feature coordinates.
+%           7:end : XY coordinates in normalized feature coordinates.
 %
 %   numPoints: Integer. Optional. number of points in the trajectory.
 %               Defaults to 15.

@@ -5,7 +5,8 @@ function [cameraMatrix, cameraPosition] = cam_matrix_theta_phi(theta, phi, d, lo
 %
 % Input:
 %    theta  : Angle camera pos vector makes with the vertical [0 pi)
-%    phi    : Angle camera pos vector's projection on the horizontal plane makes with the x-axis [0 2pi)
+%    phi    : Angle camera pos vector's projection on the horizontal plane 
+%              makes with the z-axis (in xzy) and with -y-axis (in xyz system) [0 2pi)
 %    d      : Distance from the lookat [default 1]
 %    lookAt : Optional parameter describing where camera is facing [default origin]
 %
@@ -37,13 +38,13 @@ end
 z_up = norm(cross_product(up, [0 0 1]))==0;
 y_up = norm(cross_product(up, [0 1 0]))==0;
 if z_up    
-    cameraPosition = [lookat(1) + d*sin(theta)*cos(phi), ...
-        lookat(2)  - d*sin(theta)*sin(phi), ...
+    cameraPosition = [lookat(1) + d*sin(theta)*sin(phi), ...
+        lookat(2)  - d*sin(theta)*cos(phi), ...
         lookat(3)  + d*cos(theta)];
 elseif y_up
     cameraPosition = [lookat(1) + d*sin(theta)*sin(phi), ...
-        lookat(2) - d*cos(theta), ...
-        lookat(3) - d*sin(theta)*cos(phi)];
+        lookat(2) + d*cos(theta), ...
+        lookat(3) + d*sin(theta)*cos(phi)];
 else
     error('The program does not handle this case yet.');
 end
@@ -68,19 +69,13 @@ up = cross_product(right, forward);
 up = up/norm(up);
 
 % Set up the rotation matrix.
-if z_up
-    R = [right(1),    right(2),    right(3);
-        -up(1),        -up(2),       -up(3);
-        forward(1),  forward(2), forward(3)];
-else    
-    R = [right(1),    right(2),    right(3);
-         up(1),        up(2),       up(3);
-        -forward(1), - forward(2), - forward(3)];
-end
+R = [right(1),     right(2),     right(3);
+    up(1),        up(2),       up(3);
+    -forward(1), - forward(2), - forward(3)];
 
 %
-T = [eye(3), -cameraPosition'];
+T = [eye(3), -cameraPosition'; 0 0 0 1];
 
-cameraMatrix = R*T;
+cameraMatrix = T*[R [0 0 0]'; 0 0 0 1];
 cameraMatrix = cameraMatrix(1:3, :);
 

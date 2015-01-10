@@ -14,6 +14,7 @@ include(fullfile(thisDir, 'geometry'));
 include(fullfile(thisDir, 'mocap'));
 include(fullfile(thisDir, 'mocap-trajectories'));
 include(fullfile(thisDir, 'visualization'));
+include(fullfile(thisDir, 'semantic-representation'));
 
 %% Third-party
 include(fullfile(thisDir, 'third-party/'));

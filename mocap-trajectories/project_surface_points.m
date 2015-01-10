@@ -50,6 +50,7 @@ for i=1:num_frames
     
     % Compute the projection of the points.
     [Xp, ~] = render_orthographic(bag_of_points, C);
+    
     % To make it consistent with the image coordinate system, reverse Y.
     projs2d(i).pts2d = [Xp(1,:); -Xp(2,:)];
            
@@ -57,7 +58,7 @@ for i=1:num_frames
    
     % ... 1. Backface culling.
     dotproduct  = pointDir * bag_of_norms;
-    keep_idx    = dotproduct < 0 ;
+    keep_idx    = dotproduct > 0 ;
     
     bag_of_points = bag_of_points(:, keep_idx);
     
@@ -66,7 +67,7 @@ for i=1:num_frames
     
     % ... 2. Occlusion culling.
     if ~isempty(bag_of_points)
-        visPts = HPR(bag_of_points', pointDir, HPRparam);
+        visPts = HPR(bag_of_points', campos, HPRparam);
     end
     
     logicalPts = zeros( 1, numel( keep_idx ));

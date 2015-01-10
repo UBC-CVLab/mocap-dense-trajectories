@@ -36,7 +36,7 @@ NUM_METADATA_ROWS = 7;
 ftraj    = zeros(ntraj, NUM_METADATA_ROWS + 2*len_traj);
 
 % Save the 2D location where traj terminates (maybe useful for geometry).
-traj_end = ptraj(:, end-1:end); 
+traj_end = ptraj(:, [1 2]); 
 
 % Get necessary info for trajectory features.
 diff     = ptraj(:, 1:end-2) - ptraj(:, 3:end);

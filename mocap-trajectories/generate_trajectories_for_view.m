@@ -1,6 +1,6 @@
-function [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view( ... 
+function [all_traj, thetas, phis, rectangles, all_traj_ids] = generate_trajectories_for_view( ... 
     model_surfaces, imocap, camTheta, camPhi, d, look_at, up, HPRparam, ...
-    lenTraj, personSize)
+    lenTraj, personSize, id_data)
 % GENERATE_TRAJECTORIES_FOR_VIEW Generates trajectories using a virtual
 %   camera.
 % 
@@ -35,6 +35,9 @@ function [all_traj, thetas, phis, rectangles] = generate_trajectories_for_view( 
 %
 % ---
 % Ankur & Julieta
+if nargin <11
+    id_data = [];
+end
 
 %% Compute the camera matrix and position for the entire sequence.
 [C, campos] = cam_matrix_theta_phi(camTheta, camPhi, d, look_at', up);
@@ -48,7 +51,9 @@ phis   = compute_phis( imocap, campos);
 %% Project the 3d points.
 projs2d         = project_surface_points(model_surfaces, look_at', C, campos, HPRparam);
 max_frame_index = numel(model_surfaces);
-
+if ~isempty(id_data)
+    flattened_ids   = cell2mat( id_data.pt_ids' );
+end
 %% Compute the person's height in 3d-world coordinates.
 first_frame_points = projs2d(1).pts2d;
 person_height      = max(first_frame_points(2, :)) - min(first_frame_points(2, :));
@@ -56,6 +61,7 @@ person_height      = max(first_frame_points(2, :)) - min(first_frame_points(2, :
 %% Create the output structure.
 all_traj           = cell(1, max_frame_index - (lenTraj+2) + 1);
 rectangles         = zeros(max_frame_index - (lenTraj+2) + 1, 4);
+all_traj_ids       = cell(1, max_frame_index - (lenTraj+2) + 1);
 
 % Loop through all the frames that we want.
 for frm_i = lenTraj+2:max_frame_index       
@@ -83,10 +89,11 @@ for frm_i = lenTraj+2:max_frame_index
     % time window.
     bag_of_visible = cell2mat( {projs2d(fid: -1: fid-lenTraj).visPts}');
     points_2d      = cell2mat( {projs2d(fid: -1: fid-lenTraj).pts2d}');
+    
     % Keep only the points that are visible for lenTraj frames.
     traj_inds   = all( bag_of_visible, 1 );
     traj        = points_2d( :, traj_inds)';
-        
+   
     % Now filter based on standard dev. This is taken verbatim from the
     % code of dense trajectories by Wang et al.
     minStd = sqrt(3)*person_height/personSize;
@@ -99,6 +106,10 @@ for frm_i = lenTraj+2:max_frame_index
     
     % Put the trajectories in the return structure.
     all_traj{frm_i} = traj;
+    if ~isempty(id_data)
+        traj_id     = flattened_ids(traj_inds);
+        all_traj_ids{frm_i} = traj_id(valid_size_inds);
+    end
 end
 
 end

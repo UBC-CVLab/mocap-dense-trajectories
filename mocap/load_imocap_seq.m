@@ -44,6 +44,6 @@ end
 
 imocap.trans = trmocap;
 imocap.bones = construct_bone_surfaces( mocap );
-
+imocap.xyz   = trans2xyz(trmocap);  % This may be useful in certain cases.
 end
 
