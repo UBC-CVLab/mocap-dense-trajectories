@@ -10,7 +10,7 @@ FPS       = 24; % Render at 24 frames per second.
 BASE_PATH = 'data/';
 
 tic;
-[imocap, ~] = load_imocap_seq( '12_02', FPS, BASE_PATH );
+[imocap, ~] = load_imocap_seq( '12_02', BASE_PATH, FPS);
 fprintf('%.4f seconds loading the mocap file.\n', toc);
 
 %% Define parameters of the trajectory generation.

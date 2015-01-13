@@ -1,4 +1,4 @@
-function [imocap, mocap] = load_imocap_seq( subject_sequence, target_fps, base_path)
+function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_fps)
 % LOAD_IMOCAP_SEQ Loads the mocap sequence and corresponding metadata.
 % 
 %  Input

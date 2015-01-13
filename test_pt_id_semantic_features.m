@@ -4,7 +4,7 @@ BASE_PATH = 'data/';
 VISUALIZE = 1;
 
 tic;
-[imocap, ~] = load_imocap_seq( '12_02', FPS, BASE_PATH );
+[imocap, ~] = load_imocap_seq( '12_02', BASE_PATH, FPS);
 % Create the bone surfaces.
 point_density = 20;
 bone_properties  = define_limb_prop(); % parameters describing limb volumes
@@ -19,7 +19,7 @@ fprintf('Done getting all the point ids and distances. %.4f  sec.\n', toc);
 %% IMP: For all other files you just need to pass the cyl_params same as 
 % calculated above to maintain consistency for IDs
 tic;
-[imocap, ~] = load_imocap_seq( '12_02', FPS, BASE_PATH );
+[imocap, ~] = load_imocap_seq( '12_02', BASE_PATH, FPS);
 % Create the bone surfaces.
 point_density = 20;
 bone_properties  = define_limb_prop(); % parameters describing limb volumes
