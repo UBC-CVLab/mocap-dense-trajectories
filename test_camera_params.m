@@ -56,6 +56,7 @@ plot3(campos(1), campos(2), campos(3), 'ro');
 figure;
 plot(bone_loc(1, :), bone_loc(2, :), 'b.');
 title('2d projection given the viewpoint (Y-up)');
+set(gca, 'ydir', 'reverse')
 axis equal;
 
 
@@ -79,4 +80,5 @@ axis equal;
 figure;
 plot(bone_loc(1, :), bone_loc(2, :), 'b.');
 title('2d projection given the viewpoint (Z-up)');
+set(gca, 'ydir', 'reverse');
 axis equal;

@@ -49,10 +49,8 @@ for i=1:num_frames
     bag_of_norms  = cell2mat( model_surfaces(i).norms3D' );
     
     % Compute the projection of the points.
-    [Xp, ~] = render_orthographic(bag_of_points, C);
-    
-    % To make it consistent with the image coordinate system, reverse Y.
-    projs2d(i).pts2d = [Xp(1,:); -Xp(2,:)];
+    [Xp, ~] = render_orthographic(bag_of_points, C);        
+    projs2d(i).pts2d = [Xp(1,:); Xp(2,:)];
            
     % Find the visible points...
    
