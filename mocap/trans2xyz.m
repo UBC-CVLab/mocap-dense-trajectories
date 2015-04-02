@@ -7,9 +7,10 @@ function xyz = trans2xyz(trans)
 % Output
 %    xyz   : 1xnum_bones cell array of 3xnum_frames matrices.
 %
-% -----
+
 % Ankur
-xyz  = cellfun(@(x) cell2mat(x), trans, 'UniformOutput', false);
-xyz  = cellfun(@(x) reshape(x(:, 4), 3, []), xyz, 'UniformOutput', false);
+xyz                 = cellfun(@(x) cell2mat(x), trans, 'UniformOutput', false);
+not_empty_inds      = cellfun(@(x)(~isempty(x)), xyz);
+xyz(not_empty_inds) = cellfun(@(x) reshape(x(:, 4), 3, []), xyz(not_empty_inds), 'UniformOutput', false);
 end
 

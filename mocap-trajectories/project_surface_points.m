@@ -54,9 +54,10 @@ for i=1:num_frames
            
     % Find the visible points...
    
+    % NOTE:: THESE SURFACE NORMALS ARE POINING INWARDS RATHER THAN RADIALLY OUTWARDS.
     % ... 1. Backface culling.
     dotproduct  = pointDir * bag_of_norms;
-    keep_idx    = dotproduct > 0 ;
+    keep_idx    = dotproduct > 0 ; % See above.
     
     bag_of_points = bag_of_points(:, keep_idx);
     

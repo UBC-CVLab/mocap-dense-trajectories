@@ -1,4 +1,4 @@
-function visualize_physical_trajectories(all_traj, rectangles, len_traj)
+function visualize_physical_trajectories(all_traj, rectangles, len_traj, last_frame)
 % VISUALIZE_PHYSICAL_TRAJECTORIES Visualizes the trajectories returned by  
 % GENERATE_TRAJECTORIES_FOR_VIEW.
 % 
@@ -15,8 +15,14 @@ function visualize_physical_trajectories(all_traj, rectangles, len_traj)
 % Get the number of frames.
 num_frames = size(all_traj, 2);
 
+if nargin < 4,
+    last_frame = num_frames - len_traj;
+else
+    last_frame = min(num_frames - len_traj, last_frame);    
+end
+
 % Loop over the frames ...
-for i=1:num_frames - len_traj,
+for i=1:last_frame,
 
     % Obtain the trajectories that end in this frame.
     in_frame = all_traj{i};

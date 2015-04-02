@@ -74,6 +74,10 @@ for name = bone_properties.keys,
         z = z .* len;
         
         % Getting surface normals.
+        % ---display code---
+        % surfnorm(x, y, z)
+        
+        % NOTE:: THESE SURFACE NORMALS ARE POINING INWARDS RATHER THAN RADIALLY OUTWARDS.
         [nx, ny, nz]   = surfnorm(x, y, z);
         pts            = [x(:)'; y(:)'; z(:)'];
         surfaceNormals = [nx(:)'; ny(:)'; nz(:)'];

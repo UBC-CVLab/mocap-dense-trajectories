@@ -31,9 +31,10 @@ fprintf('%.4f seconds constructing the human model.\n', toc);
 
 %% Visualize the points without culling
 if VISUALIZE,
+    SHOW_NORMALS = 0;
     for i=1:numel(model_surfaces)
         clf;
-        display_3D_points(model_surfaces, i);
+        display_3D_points(model_surfaces, i, SHOW_NORMALS);
         pause(1/FPS);
     end
 end
