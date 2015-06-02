@@ -82,8 +82,8 @@ for frm_i = lenTraj+2:max_frame_index
     % Get the rect for this frame.
     maxes = max( projs2d( fid ).pts2d, [], 2 );
     minis = min( projs2d( fid ).pts2d, [], 2 );
-    %       [ xmin, xmax, ymin, ymax];
-    rectangles(frm_i, :) = [minis(1),  maxes(1), minis(2),  maxes(2)];
+    %       [ xmin, ymin, W, H];
+    rectangles(frm_i, :) = [minis(1), minis(2), maxes(1) - minis(1), maxes(2) - minis(2)];
 
     % Stack all the entries of 2d_points and visible points in a lenTraj
     % time window.

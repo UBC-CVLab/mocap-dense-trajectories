@@ -40,9 +40,9 @@ end
 
 if ~isempty(bd_box)
     xmin   = bd_box(1);
-    ymin   = bd_box(3);
-    w      = bd_box(2) - bd_box(1);
-    h      = bd_box(4) - bd_box(3);
+    ymin   = bd_box(2);
+    w      = bd_box(3);
+    h      = bd_box(4);
     bd_box = [xmin ymin w h];
     r = rectangle('Position', bd_box); % [x y w h]
     set(r, 'EdgeColor', 'c');

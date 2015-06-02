@@ -9,8 +9,7 @@ function ptraj = traj_features2physical_traj(trajFeatures, numPoints)
 %           6     : Scale at which it was calculated.
 %           7:end : XY coordinates in normalized feature coordinates.
 %
-%   numPoints: Integer. Optional. number of points in the trajectory.
-%               Defaults to 15.
+%   numPoints: Integer. Number of points in the trajectory.
 %
 % Output
 %    ptraj : n-by-(numPoints*2) matrix of physical trajectories. Each row
@@ -19,12 +18,6 @@ function ptraj = traj_features2physical_traj(trajFeatures, numPoints)
 %
 % --
 % Julieta & Ankur
-
-% Defaults.
-DEFAULT_NUM_POINTS = 15;
-if nargin <2 
-    numPoints = DEFAULT_NUM_POINTS;
-end
 
 % If the passed trajectories are empty, return an empty array.
 if isempty(trajFeatures),
