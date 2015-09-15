@@ -20,6 +20,14 @@ function [all_traj, thetas, phis, rectangles, all_traj_ids] = generate_trajector
 %   lenTraj        : Integer. The number of frames that a trajectory takes
 %   personSize     : Integer. Estimated person size in pixels. This is used
 %                       to remove small trajectories.
+%   id_data        : Strcture with following information [OPTIONAL]
+%                     limbs  : 2-by-nbones cell array containing names and
+%                              imocap id for each limb.
+%                     pt_ids : 1-by-nbones cell array. Unique id of each
+%                              pt on the surface.
+%                     dist   : 1-by-nbones cell array. Each entry is a
+%                               symmetrix distance matrix between points of
+%                               a bone.
 %
 % Output
 %   all_traj   : n-long cell array, where n is the number of entries in
@@ -32,6 +40,9 @@ function [all_traj, thetas, phis, rectangles, all_traj_ids] = generate_trajector
 %                each frame.
 %   rectangles : n-by-4 matrix. Each row is [xmin, xmax, ymin, ymax]; i.e.
 %                the rectangle surrouding the person in each frame.
+%  all_traj_ids: n-long cell array. Each cell contains the indices for each
+%                trajectory finishing in that frame. This is returned only
+%                if id_data is provided.
 %
 % ---
 % Ankur & Julieta

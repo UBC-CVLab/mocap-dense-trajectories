@@ -23,7 +23,7 @@ end
 
 % Loop over the frames ...
 for i=1:last_frame,
-
+    clf;
     % Obtain the trajectories that end in this frame.
     in_frame = all_traj{i};
     
@@ -35,7 +35,7 @@ for i=1:last_frame,
     set(gca,'YDir','Reverse'); % Trajs are upside down to be consistent 
                                % with the image coordinate system.
     pause(1/24);
-    clf;
+    
     hold off;
 end
 
