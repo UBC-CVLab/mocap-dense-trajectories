@@ -44,7 +44,7 @@ theta       = pi/3;
 phi         = pi/3;
 D           = 1000;
 UP          = [0 1 0];                    % y-axis.
-look_at     = imocap.trans{1}{1}(1:3, 4); % center of the body to center the camera.
+look_at     = imocap.trans{1}(1:3, 4, 1); % center of the body to center the camera.
 HPRparam    = 3;
 
 % Compute the camera matrix and position for the whole sequence.

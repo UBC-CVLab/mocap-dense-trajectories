@@ -66,7 +66,7 @@ for i=1:num_frames
     
     % ... 2. Occlusion culling.
     if ~isempty(bag_of_points)
-        visPts = HPR(bag_of_points', campos, HPRparam);
+        visPts = HPR(double(bag_of_points)', double(campos), HPRparam);
     end
     
     logicalPts = zeros( 1, numel( keep_idx ));

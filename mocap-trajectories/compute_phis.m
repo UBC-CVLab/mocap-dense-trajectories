@@ -14,9 +14,10 @@ function phis = compute_phis( imocap, campos )
 % Julieta
 
 % Slice the hip_headings.
-hip_transformations = imocap.trans{1};
-hip_headings        = cellfun( @(x) x(1:3, 3)', hip_transformations, 'UniformOutput', false );
-hip_headings        = cell2mat( hip_headings );
+% hip_transformations = squeeze(num2cell(imocap.trans{1}, [1, 2]));
+% hip_headings        = cellfun( @(x) x(1:3, 3)', hip_transformations, 'UniformOutput', false );
+% hip_headings        = cell2mat( hip_headings );
+hip_headings        = squeeze(imocap.trans{1}(1:3, 3, :))';
 % Project to the ground.
 hip_headings(:, 2)  = 0;
 % Normalize.
@@ -24,9 +25,9 @@ hip_headings_norm   = sqrt(sum(abs( hip_headings ).^2, 2));
 hip_headings        = hip_headings ./ repmat( hip_headings_norm, [1, 3] );
 
 nframes = size( hip_headings, 1 );
-
+hip_loc = squeeze(imocap.trans{1}(1:3, 4, :))';
 % Slice the camera opsition wrt the hip.
-campos_normalized       = repmat(campos, [nframes, 1]) - cell2mat( cellfun( @(x) x(1:3, 4)', hip_transformations, 'UniformOutput', false ));
+campos_normalized       = repmat(campos, [nframes, 1]) - hip_loc;
 % Project to the ground plane and normalize.
 campos_normalized(:, 2) = 0;
 campos_normalized_norm  = sqrt(sum(abs(campos_normalized).^2,2));

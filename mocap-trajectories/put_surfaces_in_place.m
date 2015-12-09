@@ -32,7 +32,8 @@ function [model_surfaces, id_data] = put_surfaces_in_place(imocap, frame_range)
 % -------
 % Julieta & Ankur
 
-trmocap     = imocap.trans;
+% trmocap     = imocap.trans;
+trmocap     = cellfun(@(x)squeeze(num2cell(x, [1 2])), imocap.trans, 'UniformOutput', false);
 nframes     = size(trmocap{1}, 1);
 
 % Default values.
@@ -81,21 +82,21 @@ for i = 1:nlimbs,
     
     if ~strcmp( limbs_to_construct{i, 1}, 'Torso' ),
         % Get the trasnformations for this bone.
-        T     = imocap.trans{  limbs_to_construct{i, 2} };
+        T     = trmocap{  limbs_to_construct{i, 2} };
     else
         % The torso is a special case. We have to build the transformation
         % right here.
         leftArmInd    = imocap_ind_map('LeftArm');
-        left_arm_loc  = cellfun(@(x) x(1:3, 4), imocap.trans{leftArmInd}, 'UniformOutput', false);
+        left_arm_loc  = cellfun(@(x) x(1:3, 4), trmocap{leftArmInd}, 'UniformOutput', false);
         
         rightArmInd = imocap_ind_map('RightArm');
-        right_arm_loc = cellfun(@(x) x(1:3, 4), imocap.trans{rightArmInd}, 'UniformOutput', false);
+        right_arm_loc = cellfun(@(x) x(1:3, 4), trmocap{rightArmInd}, 'UniformOutput', false);
         
         leftHipInd = imocap_ind_map('LeftUpLeg');
-        left_hip_loc  = cellfun(@(x) x(1:3, 4), imocap.trans{leftHipInd}, 'UniformOutput', false);
+        left_hip_loc  = cellfun(@(x) x(1:3, 4), trmocap{leftHipInd}, 'UniformOutput', false);
         
         rightHipInd = imocap_ind_map('RightUpLeg');
-        right_hip_loc = cellfun(@(x) x(1:3, 4), imocap.trans{rightHipInd}, 'UniformOutput', false);
+        right_hip_loc = cellfun(@(x) x(1:3, 4), trmocap{rightHipInd}, 'UniformOutput', false);
         
         topMid = cellfun(@(x, y) mean([x,y],2), left_arm_loc, right_arm_loc, 'UniformOutput', false);
         botMid = cellfun(@(x, y) mean([x,y],2), left_hip_loc, right_hip_loc, 'UniformOutput', false);

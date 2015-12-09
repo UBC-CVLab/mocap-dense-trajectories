@@ -1,4 +1,4 @@
-function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_fps)
+function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_fps )
 % LOAD_IMOCAP_SEQ Loads the mocap sequence and corresponding metadata.
 %
 %  Input
@@ -17,7 +17,6 @@ function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_
 %
 % --
 % Alireza & Ankur
-
 if nargin < 3,
     target_fps = 24;
 end
@@ -43,12 +42,13 @@ for joint=1:numel(mocap)
     ind = get_imocap_joint_index(joint_data.name, name_ind_map);
     if ~isempty(joint_data.trans)
         mocap_transformation = joint_data.trans(1:3, :, 1:skip:end);
-        trmocap{1, ind} = squeeze( num2cell( mocap_transformation, [1, 2]) );
+        trmocap{1, ind} = single(mocap_transformation);
     end    
 end
 
 imocap.trans = trmocap;
 imocap.bones = construct_bone_surfaces( mocap );
-imocap.xyz   = trans2xyz(trmocap);  % This may be useful in certain cases.
+%imocap.xyz   = trans2xyz(trmocap);  % This may be useful in certain cases.
 end
+
 
