@@ -1,10 +1,11 @@
-function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_fps )
+function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_fps, load_xyz )
 % LOAD_IMOCAP_SEQ Loads the mocap sequence and corresponding metadata.
 %
 %  Input
 %   subject_sequence : e.g 01_01 02_01 or full path in case second argument empty.
 %   base_path        : String. The folder where the data is. [Optional]
-%   target_fps       : Optional Integer. default is 24.
+%   target_fps       : Optional Integer. Default is 24.
+%   load_xyz         : Optional Bool. Default is true.
 %
 %  Output
 %    imocap     : Struct with the following fields-
@@ -17,6 +18,10 @@ function [imocap, mocap] = load_imocap_seq( subject_sequence, base_path, target_
 %
 % --
 % Alireza & Ankur
+if nargin < 4,
+    load_xyz = true;
+end
+
 if nargin < 3,
     target_fps = 24;
 end
@@ -36,19 +41,33 @@ skip      = round(mocap_fps / target_fps);
 
 imocap    = struct();
 trmocap   = cell(1, numel(targets) - 1);
+bone_inds = zeros(1, 10);
 
+%
+ctr = 0;
 for joint=1:numel(mocap)
     joint_data = mocap(joint);
     ind = get_imocap_joint_index(joint_data.name, name_ind_map);
+    % Only store non-empty bones.
     if ~isempty(joint_data.trans)
-        mocap_transformation = joint_data.trans(1:3, :, 1:skip:end);
-        trmocap{1, ind} = single(mocap_transformation);
+        mocap_transformation = joint_data.trans(1:3, :, 1:skip:end);        
+        ctr = ctr + 1;
+        trmocap{1, ctr}  = single(mocap_transformation);
+        bone_inds(ctr)   = ind; % Keep track of the index you are storing.
     end    
 end
+trmocap = trmocap(1:ctr);
 
-imocap.trans = trmocap;
-imocap.bones = construct_bone_surfaces( mocap );
-%imocap.xyz   = trans2xyz(trmocap);  % This may be useful in certain cases.
+data_inds            = zeros(1, numel(bone_inds));
+data_inds(bone_inds) = 1:numel(bone_inds);
+
+imocap.trans      = trmocap;
+imocap.bones      = construct_bone_surfaces( mocap );
+imocap.orig_inds  = bone_inds; % Store the mapping between the original and the current index.
+imocap.data_inds  = data_inds;
+if load_xyz,
+    imocap.xyz_mat    = trans2xyz_mat(trmocap);  % This may be useful in certain cases.
+end
 end
 
 

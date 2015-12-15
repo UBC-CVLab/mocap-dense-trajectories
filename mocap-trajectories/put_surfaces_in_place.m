@@ -82,20 +82,20 @@ for i = 1:nlimbs,
     
     if ~strcmp( limbs_to_construct{i, 1}, 'Torso' ),
         % Get the trasnformations for this bone.
-        T     = trmocap{  limbs_to_construct{i, 2} };
+        T     = trmocap{  imocap.data_inds(limbs_to_construct{i, 2}) };
     else
         % The torso is a special case. We have to build the transformation
         % right here.
-        leftArmInd    = imocap_ind_map('LeftArm');
+        leftArmInd    = imocap.data_inds(imocap_ind_map('LeftArm'));
         left_arm_loc  = cellfun(@(x) x(1:3, 4), trmocap{leftArmInd}, 'UniformOutput', false);
         
-        rightArmInd = imocap_ind_map('RightArm');
+        rightArmInd = imocap.data_inds(imocap_ind_map('RightArm'));
         right_arm_loc = cellfun(@(x) x(1:3, 4), trmocap{rightArmInd}, 'UniformOutput', false);
         
-        leftHipInd = imocap_ind_map('LeftUpLeg');
+        leftHipInd = imocap.data_inds(imocap_ind_map('LeftUpLeg'));
         left_hip_loc  = cellfun(@(x) x(1:3, 4), trmocap{leftHipInd}, 'UniformOutput', false);
         
-        rightHipInd = imocap_ind_map('RightUpLeg');
+        rightHipInd = imocap.data_inds(imocap_ind_map('RightUpLeg'));
         right_hip_loc = cellfun(@(x) x(1:3, 4), trmocap{rightHipInd}, 'UniformOutput', false);
         
         topMid = cellfun(@(x, y) mean([x,y],2), left_arm_loc, right_arm_loc, 'UniformOutput', false);

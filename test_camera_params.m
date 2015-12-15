@@ -37,7 +37,7 @@ bag_of_points = cell2mat( model_surfaces(1).pts3D' );
 
 %% Project the surface points to 2d, and compute their visibilities.
 D           = 100;
-UP          = [0 1 0];                    % y-axis.
+UP          = 0;   %[0 1 0]  y-axis.
 look_at     = imocap.trans{1}(1:3, 4, 1); % center of the body to center the camera.
 HPRparam    = 3;
 
@@ -61,7 +61,7 @@ axis equal;
 
 
 %% Now convert them to xyz coordinate and test again.
-UP           = [0 0 1];                    % y-axis.
+UP           = 1;  %[0 0 1] y-axis.
 tr_look_at   = xzy2xyz(look_at);
 tr_bop       = xzy2xyz(bag_of_points);
 
