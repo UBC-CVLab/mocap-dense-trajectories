@@ -65,9 +65,7 @@ imocap.trans      = trmocap;
 imocap.bones      = construct_bone_surfaces( mocap );
 imocap.orig_inds  = bone_inds; % Store the mapping between the original and the current index.
 imocap.data_inds  = data_inds;
-if load_xyz,
-    imocap.xyz_mat    = trans2xyz_mat(trmocap);  % This may be useful in certain cases.
-end
+
 end
 
 
