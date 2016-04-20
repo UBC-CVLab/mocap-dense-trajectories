@@ -1,4 +1,4 @@
-function [traj_feats, relative_thetas, relative_phis, rectangles, semantic_feats] = ...
+function [traj_feats, relative_thetas, relative_phis, rectangles] = ...
     imocap2trajectories( imocap, theta, phi, point_density, d, look_at, up, ...
     HPRparam, lenTraj, person_size)
 %IMOCAP2TRAJECTORIES Computes dense trajectories for a given mocaps 
@@ -67,8 +67,3 @@ else
     rectangles = [];
 end
 
-%% Generate semantic information on demand.
-if nargout > 4,
-    semantic_feats = generate_semantic_features_for_trajs(ptraj, imocap, theta, phi, d, look_at, up);
-    semantic_feats = cell2mat( semantic_feats' );
-end

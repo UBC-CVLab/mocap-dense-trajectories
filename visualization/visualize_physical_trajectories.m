@@ -23,13 +23,16 @@ end
 
 % Loop over the frames ...
 for i=1:last_frame,
-    clf;
+    %clf;
     % Obtain the trajectories that end in this frame.
     in_frame = all_traj{i};
     
     if isempty( in_frame), continue; end;
-    
-    display_2D_trajectories(in_frame, [], rectangles(i, :));    
+    if isempty(rectangles),
+        display_2D_trajectories(in_frame, [], [], 0.03);    
+    else
+        display_2D_trajectories(in_frame, [], rectangles(i, :));    
+    end
     
     axis equal;
     set(gca,'YDir','Reverse'); % Trajs are upside down to be consistent 
