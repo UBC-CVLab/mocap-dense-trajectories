@@ -23,7 +23,7 @@ end
 
 % Loop over the frames ...
 for i=1:last_frame,
-    %clf;
+    clf;
     % Obtain the trajectories that end in this frame.
     in_frame = all_traj{i};
     
