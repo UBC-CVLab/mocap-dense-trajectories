@@ -3,7 +3,7 @@ mocap-dense-trajectories
 
 This code generates dense trajectories similar to [those of Wang et. al](https://lear.inrialpes.fr/people/wang/dense_trajectories), [1]
 but generated from mocap data, instead of video sequences. For an extended 
-description visit our [project website](http://jltmtz.github.io/mocap-dense-trajectories/).
+description visit our [project website](http://UBC-CVLab.github.io/mocap-dense-trajectories/).
 
 ![The Process in a Nuthsell](http://www.cs.ubc.ca/~julm/imgs/trajectory_generation.png)
 
