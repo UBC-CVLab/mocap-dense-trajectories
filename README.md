@@ -5,7 +5,7 @@ This code generates dense trajectories similar to [those of Wang et. al](https:/
 but generated from mocap data, instead of video sequences. For an extended 
 description visit our [project website](http://UBC-CVLab.github.io/mocap-dense-trajectories/).
 
-![The Process in a Nuthsell](http://www.cs.ubc.ca/~julm/imgs/trajectory_generation.png)
+![The Process in a Nuthsell](https://github.com/UBC-CVLab/mocap-dense-trajectories/blob/master/imgs/nutshell.png?raw=true)
 
 This code was written mainly by [Ankur Gupta](http://www.cs.ubc.ca/~ankgupta/) and [Julieta Martinez](http://www.cs.ubc.ca/~julm/).
 
