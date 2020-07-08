@@ -7,7 +7,7 @@ description visit our [project website](http://UBC-CVLab.github.io/mocap-dense-t
 
 ![The Process in a Nuthsell](https://github.com/UBC-CVLab/mocap-dense-trajectories/blob/master/imgs/nutshell.png?raw=true)
 
-This code was written mainly by [Ankur Gupta](http://www.cs.ubc.ca/~ankgupta/) and [Julieta Martinez](http://www.cs.ubc.ca/~julm/).
+This code was written mainly by [Ankur Gupta](http://www.cs.ubc.ca/~ankgupta/) and [Julieta Martinez](https://github.com/una-dinosauria).
 
 Usage
 -----
@@ -32,7 +32,7 @@ As opposed to the video dense trajectories, we obviously do not compute visual d
 
 Citation
 --------
-If you use this code, please cite our CVPR 14 paper:
+If you use this code, please cite our CVPR 14 paper, openly accessible thanks to the [Computer Vision Foundation](https://openaccess.thecvf.com/content_cvpr_2014/html/Gupta_3D_Pose_from_2014_CVPR_paper.html): [[PDF](https://openaccess.thecvf.com/content_cvpr_2014/papers/Gupta_3D_Pose_from_2014_CVPR_paper.pdf)]
 
 ```
 A. Gupta, J. Martinez, J. J. Little and R. J. Woodham. "Pose from Motion for Cross-view Action Recognition via Non-linear Circulant Temporal Encoding". In CVPR, 2014.
